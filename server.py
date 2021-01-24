@@ -3,18 +3,7 @@ import time
 
 app = Flask(__name__)
 
-db = [
-    {
-        'time': time.time(),
-        'name': 'Bob',
-        'text': 'Hi everybody!'
-    },
-    {
-        'time': time.time() + 100,
-        'name': 'Alice',
-        'text': 'Hello there!'
-    }
-]
+db = []
 
 
 @app.route('/')
