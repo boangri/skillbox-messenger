@@ -5,9 +5,10 @@ from datetime import datetime
 
 
 class Messenger(QtWidgets.QMainWindow, clientui.Ui_Dialog):
-    def __init__(self):
+    def __init__(self, server_host):
         super().__init__()
         self.setupUi(self)
+        self.server_host = server_host
 
         self.pushButton.pressed.connect(self.send_message)
         self.after = 0.
@@ -17,7 +18,7 @@ class Messenger(QtWidgets.QMainWindow, clientui.Ui_Dialog):
 
     def get_messages(self):
         try:
-            response = requests.get('http://localhost:5000/messages', params={'after': self.after})
+            response = requests.get(self.server_host + '/messages', params={'after': self.after})
         except:
             return
 
@@ -37,7 +38,7 @@ class Messenger(QtWidgets.QMainWindow, clientui.Ui_Dialog):
         name = self.lineEdit.text()
         text = self.textEdit.toPlainText()
         try:
-            response = requests.post('http://localhost:5000/send', json={
+            response = requests.post(self.server_host + '/send', json={
                 'name': name,
                 'text': text
             })
@@ -55,6 +56,6 @@ class Messenger(QtWidgets.QMainWindow, clientui.Ui_Dialog):
 
 
 app = QtWidgets.QApplication([])
-window = Messenger()
+window = Messenger(server_host='http://localhost:5000')
 window.show()
 app.exec()
