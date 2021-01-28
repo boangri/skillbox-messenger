@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  server:
+    image: boangri/skillbox-messenger-server
+    restart: always
+    ports:
+      - 5000:5000
+    working_dir: /usr/src/app
+    environment:
+      PORT: 5000
+    volumes:
+      - ./:/usr/src/app
+  

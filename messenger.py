@@ -56,6 +56,6 @@ class Messenger(QtWidgets.QMainWindow, clientui.Ui_Dialog):
 
 
 app = QtWidgets.QApplication([])
-window = Messenger(server_host='http://localhost:5000')
+window = Messenger(server_host='http://localhost:8080')
 window.show()
 app.exec()
