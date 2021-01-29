@@ -54,8 +54,7 @@ class Messenger(QtWidgets.QMainWindow, clientui.Ui_Dialog):
         self.textEdit.setText('')
 
 
-
 app = QtWidgets.QApplication([])
-window = Messenger(server_host='http://localhost:8080')
+window = Messenger(server_host='http://docker.xland.ru:5000')
 window.show()
 app.exec()
