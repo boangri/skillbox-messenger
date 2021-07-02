@@ -5,7 +5,7 @@ services:
     image: boangri/skillbox-messenger-server
     restart: always
     ports:
-      - 5000:5000
+      - 5001:5000
     working_dir: /usr/src/app
     environment:
       PORT: 5000
