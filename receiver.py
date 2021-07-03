@@ -14,7 +14,7 @@ def print_message(mess):
 
 after = 0
 while True:
-    response = requests.get('http://localhost:5000/messages',
+    response = requests.get('http://docker-yc.xland.ru:5001/messages',
                             params={'after': after})
     data = response.json()
     for message in data['messages']:
