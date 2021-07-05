@@ -29,7 +29,7 @@ RUN mkdir /home/boris/code
 WORKDIR /home/boris/code
 COPY . .
 
-EXPOSE 5000
+EXPOSE 5001
 
 # make sure all messages always reach console
 ENV PYTHONUNBUFFERED=1
@@ -38,9 +38,8 @@ ENV PYTHONUNBUFFERED=1
 ENV VIRTUAL_ENV=/home/boris/venv
 ENV PATH="/home/boris/venv/bin:$PATH"
 ENV TZ="Europe/Moscow"
-ENV TZ Europe/Moscow
-CMD ["python", "./server.py"]
+#CMD ["python", "./server.py"]
 # /dev/shm is mapped to shared memory and should be used for gunicorn heartbeat
 # this will improve performance and avoid random freezes
-#CMD ["gunicorn","-b", "0.0.0.0:5001", "-w", "4", "-k", "gevent", "--worker-tmp-dir", "/dev/shm", "app:app"]
-
+#CMD ["gunicorn", "-b", "0.0.0.0:5001", "-w", "4", "-k", "gevent", "--worker-tmp-dir", "/dev/shm", "server:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:5001", "-w", "4", "--threads", "2", "server:app"]
